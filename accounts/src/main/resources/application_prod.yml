@@ -1,0 +1,14 @@
+spring:
+  config:
+    activate:
+      on-profile: "prod"
+build:
+  version: "1.0"
+accounts:
+  message: "Welcome to Eazybank account PROD Api"
+  contactDetails:
+    name: "Gs - PROD"
+    email: "GG@eazybank.com"
+  onCallSupport:
+    -(111)123-222
+    -(111)123-333
