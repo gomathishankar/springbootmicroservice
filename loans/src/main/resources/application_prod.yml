@@ -1,0 +1,17 @@
+spring:
+  config:
+    activate:
+      on-profile:
+        - "prod"
+
+build:
+  version: "4.0"
+
+loans:
+  message: "Welcome to the loans API of EazyBank"
+  contactDetails:
+    name: "GS - Prod"
+    email: "gs@loan.eazybank"
+  onCallSupport:
+    - (111)123-123
+    - (111)321-321

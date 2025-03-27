@@ -11,9 +11,12 @@ import jakarta.validation.constraints.Pattern;
 import lombok.AllArgsConstructor;
 import org.gslearn.loans.constants.LoansConstants;
 import org.gslearn.loans.dto.ErrorResponseDto;
+import org.gslearn.loans.dto.LoansApplicationDto;
 import org.gslearn.loans.dto.LoansDto;
 import org.gslearn.loans.dto.ResponseDto;
 import org.gslearn.loans.service.ILoansService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -26,11 +29,17 @@ import org.springframework.web.bind.annotation.*;
 )
 @RestController
 @RequestMapping(path = "/api", produces = {MediaType.APPLICATION_JSON_VALUE})
-@AllArgsConstructor
 @Validated
 public class LoansController {
 
     private ILoansService loansService;
+
+    @Autowired
+    private LoansApplicationDto loansApplicationDto;
+
+    @Value("${build.version}")
+    private String buildVersion;
+
 
     @Operation(
             summary = "Create Loan REST API",
@@ -141,5 +150,15 @@ public class LoansController {
             return ResponseEntity.status(HttpStatus.OK).body(new ResponseDto(LoansConstants.STATUS_200, LoansConstants.MESSAGE_200));
         }
         return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(new ResponseDto(LoansConstants.STATUS_417, LoansConstants.MESSAGE_417_DELETED));
+    }
+
+    @GetMapping("/build-version")
+    public ResponseEntity<String> getBuildVersion() {
+        return ResponseEntity.status(HttpStatus.OK).body(buildVersion);
+    }
+
+    @GetMapping("/contact-info")
+    public ResponseEntity<LoansApplicationDto> getContactDetails() {
+        return ResponseEntity.status(HttpStatus.OK).body(loansApplicationDto);
     }
 }

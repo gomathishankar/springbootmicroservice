@@ -14,5 +14,20 @@ spring:
     hibernate:
       ddl-auto: update
     show-sql: true
+  config:
+    import:
+      - "application_qa.yml"
+      - "application_prod.yml"
+  profiles:
+    active:
+      - "qa"
 build:
   version: "1.0"
+cards:
+  message: "Welcome to Card API information local"
+  contactDetails:
+    name: "GS cards - Dev"
+    email: "Gs@card.dev"
+  onCallSupport:
+    - (111)555-555
+    - (111)666-666

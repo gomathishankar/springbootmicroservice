@@ -1,0 +1,16 @@
+spring:
+  config:
+    activate:
+      on-profile: "qa"
+
+build:
+  version: "2.0"
+
+loans:
+  message: "Welcome to the loans API of EazyBank"
+  contactDetails:
+    name: "GS - QA"
+    email: "gs@loan.eazybank"
+  onCallSupport:
+    - (111)888-666
+    - (111)111-777
