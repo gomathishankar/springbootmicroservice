@@ -1,11 +1,5 @@
-spring:
-  config:
-    activate:
-      on-profile:
-        - "prod"
-
 build:
-  version: "4.0"
+  version: "1.2"
 
 loans:
   message: "Welcome to the loans API of EazyBank"

@@ -1,9 +1,5 @@
-spring:
-  config:
-    active:
-      on-profile:
-        - "qa"
-
+build:
+  version: "1.4"
 cards:
   message: "Welcome to Card API information local"
   contactDetails:

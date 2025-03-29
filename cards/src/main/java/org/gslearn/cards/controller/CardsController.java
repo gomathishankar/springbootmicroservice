@@ -44,6 +44,10 @@ public class CardsController {
     @Value("${build.version}")
     private String buildVersion;
 
+    public CardsController(ICardsService iCardsService) {
+        this.iCardsService = iCardsService;
+    }
+
     @Operation(
             summary = "Create Card REST API",
             description = "REST API to create new Card inside EazyBank"

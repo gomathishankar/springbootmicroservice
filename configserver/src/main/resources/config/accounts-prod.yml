@@ -1,9 +1,5 @@
-spring:
-  config:
-    activate:
-      on-profile: "prod"
 build:
-  version: "1.0"
+  version: "1.3"
 accounts:
   message: "Welcome to Eazybank account PROD Api"
   contactDetails:

@@ -1,0 +1,10 @@
+build:
+  version: "1.3"
+cards:
+  message: "Welcome to Card API information local"
+  contactDetails:
+    name: "GS cards - Dev"
+    email: "Gs@card.dev"
+  onCallSupport:
+    - (111)555-555
+    - (111)666-666

@@ -1,0 +1,16 @@
+build:
+  version: "1.4"
+
+loans:
+  message: "Welcome to the loans API of EazyBank"
+  contactDetails:
+    name: "GS - Dev"
+    email: "gs@loan.eazybank"
+  onCallSupport:
+    - (111)666-666
+    - (111)777-777
+
+
+
+
+

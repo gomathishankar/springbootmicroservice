@@ -2,11 +2,15 @@ server:
   port: 8090
 spring:
   application:
-    name: loans
+    name: "loans"
+  profiles:
+    active: "prod"
   h2:
     console:
       path: /h2-console
       enabled: true
+  config:
+    import: "optional:configserver:http://localhost:8071/"
   datasource:
     driver-class-name: org.h2.Driver
     username: sa
@@ -16,25 +20,6 @@ spring:
     show-sql: true
     hibernate:
       ddl-auto: update
-  config:
-    import:
-      - "application_qa.yml"
-      - "application_prod.yml"
-
-  profiles:
-    active:
-      - "qa"
-build:
-  version: "1.0"
-
-loans:
-  message: "Welcome to the loans API of EazyBank"
-  contactDetails:
-    name: "GS - Dev"
-    email: "gs@loan.eazybank"
-  onCallSupport:
-    - (111)666-666
-    - (111)777-777
 
 
 
