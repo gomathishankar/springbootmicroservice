@@ -7,7 +7,7 @@ services:
       - "15672:15672"
     healthcheck:
       test: rabbitmq-diagnostics check_port_connectivity
-      intervals: 10s
+      interval: 10s
       timeout: 5s
       retries: 10
       start_period: 5s
