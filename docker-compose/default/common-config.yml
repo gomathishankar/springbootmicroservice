@@ -1,6 +1,6 @@
-service:
+services:
   network-deploy-service:
-    network:
+    networks:
       - eazybank
 
   microservice-base-config:
@@ -10,6 +10,8 @@ service:
       resources:
         limits:
           memory: 700m
+    environment:
+      SPRING_RABBITMQ_HOST: "rabbit"
 
   microserve-server:config:
     extends:
