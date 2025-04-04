@@ -40,6 +40,9 @@ public class LoansController {
     @Value("${build.version}")
     private String buildVersion;
 
+    public LoansController(ILoansService iLoanService) {
+        this.loansService = iLoanService;
+    }
 
     @Operation(
             summary = "Create Loan REST API",

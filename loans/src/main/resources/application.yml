@@ -5,26 +5,17 @@ spring:
     name: "loans"
   profiles:
     active: "prod"
-  h2:
-    console:
-      path: /h2-console
-      enabled: true
+  datasource:
+    url: jdbc:mysql://localhost:3307/loansdb
+    username: root
+    password: root
   config:
     import: "optional:configserver:http://localhost:8071/"
-  datasource:
-    driver-class-name: org.h2.Driver
-    username: sa
-    password: ""
-    url: jdbc:h2:mem:testdb
   jpa:
     show-sql: true
-    hibernate:
-      ddl-auto: update
-  rabbitmq:
-    host: "localhost"
-    port: 5672
-    username: "guest"
-    password: "guest"
+  sql:
+    init:
+      mode: always
 
 management:
   endpoints:
