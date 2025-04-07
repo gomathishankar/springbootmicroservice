@@ -3,9 +3,10 @@ package org.gslearn.accounts.service.client;
 import org.gslearn.accounts.dto.LoansDto;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.cloud.openfeign.FeignClient;
 
 @FeignClient("loans")
-public class LoanssFeignClient {
+public class LoansFeignClient {
     @GetMapping("/api/fetch",consumes="application/json")
     public ResponseEntity<LoansDto> fetchLoanDetails(@RequestParam String mobileNumber);
 }
