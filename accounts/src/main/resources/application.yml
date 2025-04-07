@@ -6,31 +6,20 @@ spring:
   profiles:
     active: "prod"
   datasource:
-#    url: jdbc:h2:mem:testdb
-#    driverClassName: org.h2.Driver
-#    username: sa
-#    password: ''
-    url: jdbc:mysql://localhost:3306/accountsdb
-    username: root
-    password: root
-#  h2:
-#    console:
-#      enabled: true
+    url: jdbc:h2:mem:testdb
+    driverClassName: org.h2.Driver
+    username: sa
+    password: ''
+  h2:
+    console:
+      enabled: true
   config:
     import: "optional:configserver:http://localhost:8071/"
   jpa:
-#    database-platform: org.hibernate.dialect.H2Dialect
-#    hibernate:
-#      ddl-auto: update
+    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: update
     show-sql: true
-  sql:
-    init:
-      mode: always
-#  rabbitmq:
-#    host: "localhost"
-#    port: 5672
-#    username: "guest"
-#    password: "guest"
 
 management:
   endpoints:
@@ -38,7 +27,8 @@ management:
       exposure:
         include: "*"
   endpoint:
-    access: unrestricted
+    shutdown:
+      access: unrestricted
   info:
     env:
       enabled: true
