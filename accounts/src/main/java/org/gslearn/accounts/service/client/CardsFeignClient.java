@@ -8,6 +8,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @FeignClient("cards")
 public class CardsFeignClient {
-    @GetMapping("/api/fetch",consumes="application/json")
+    @GetMapping(value = "/api/fetch",consumes="application/json")
     public ResponseEntity<CardsDto> fetchCardDetails(@RequestParam String mobileNumber);
 }
