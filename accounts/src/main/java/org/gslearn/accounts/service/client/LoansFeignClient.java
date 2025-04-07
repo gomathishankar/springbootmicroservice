@@ -7,7 +7,7 @@ import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @FeignClient("loans")
-public class LoansFeignClient {
+public interface LoansFeignClient {
     @GetMapping(value = "/api/fetch",consumes="application/json")
     public ResponseEntity<LoansDto> fetchLoanDetails(@RequestParam String mobileNumber);
 }
