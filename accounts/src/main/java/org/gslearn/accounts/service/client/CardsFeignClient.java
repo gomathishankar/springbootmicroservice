@@ -4,6 +4,7 @@ import org.gslearn.accounts.dto.CardsDto;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.web.bind.annotation.GetMapping;
 
 @FeignClient("cards")
 public class CardsFeignClient {
