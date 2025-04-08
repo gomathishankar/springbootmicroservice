@@ -82,6 +82,10 @@
             <artifactId>mysql-connector-j</artifactId>
             <scope>runtime</scope>
         </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-openfeign</artifactId>
+        </dependency>
         <!-- https://mvnrepository.com/artifact/org.springdoc/springdoc-openapi-starter-webmvc-ui -->
         <dependency>
             <groupId>org.springdoc</groupId>
@@ -140,7 +144,7 @@
                 <version>3.4.2</version>
                 <configuration>
                     <to>
-                        <image>lsgshankar/${project.artifactId}:s7</image>
+                        <image>lsgshankar/${project.artifactId}:s8</image>
                     </to>
                 </configuration>
             </plugin>
