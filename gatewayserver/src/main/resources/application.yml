@@ -1,0 +1,39 @@
+spring:
+  application:
+    name: "gatewayserver"
+  config:
+    import: "optional:configserver:http://localhost:8071/"
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: false
+          # To tell gateway to connect with eureka server to do client discovery
+          # Set to false if there is custom url instead of default ex: /eazybank/accounts ...
+          lower-case-service-id: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    gateway:
+      access: unrestricted
+
+  info:
+    env:
+      enabled: true
+
+info:
+  app:
+    name: "gatewayserver"
+    description: "Eazy bank gateway server application"
+    version: "1.0.0"
+
+logging:
+  level:
+    org:
+      gslearn:
+        gatewayserver: DEBUG
+

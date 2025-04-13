@@ -16,7 +16,7 @@ import java.util.Random;
 
 @Service
 @AllArgsConstructor
-public class LoansService implements ILoansService {
+public class LoansServiceImpl implements ILoansService {
 
     private LoansRepository loansRepository;
 

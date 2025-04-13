@@ -29,8 +29,16 @@ management:
   endpoint:
     shutdown:
       access: unrestricted
+    health:
+      probes:
+        enabled: true
   info:
     env:
+      enabled: true
+  health:
+    readiness-state:
+      enabled: true
+    liveness-state:
       enabled: true
 
 eureka:
@@ -47,3 +55,10 @@ info:
     name: "cards"
     description: "Eazy bank Cards Application"
     version: "1.0.0"
+
+logging:
+  level:
+    org:
+      gslearn:
+        cards: DEBUG
+
