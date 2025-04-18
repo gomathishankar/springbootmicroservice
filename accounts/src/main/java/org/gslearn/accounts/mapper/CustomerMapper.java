@@ -1,5 +1,6 @@
 package org.gslearn.accounts.mapper;
 
+import org.gslearn.accounts.dto.CustomerDetailsDto;
 import org.gslearn.accounts.dto.CustomerDto;
 import org.gslearn.accounts.entity.Customer;
 
@@ -17,5 +18,12 @@ public class CustomerMapper {
         customer.setMobileNumber(customerDto.getMobileNumber());
         customer.setEmail(customerDto.getEmail());
         return customer;
+    }
+
+    public static CustomerDetailsDto mapToCustomerDetailsDto(Customer customerDto, CustomerDetailsDto customerDetailsDto) {
+        customerDetailsDto.setName(customerDto.getName());
+        customerDetailsDto.setMobileNumber(customerDto.getMobileNumber());
+        customerDetailsDto.setEmail(customerDto.getEmail());
+        return customerDetailsDto;
     }
 }
