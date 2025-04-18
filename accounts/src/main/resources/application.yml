@@ -27,6 +27,7 @@ management:
       exposure:
         include: "*"
   endpoint:
+
     shutdown:
       access: unrestricted
     health:
@@ -40,6 +41,7 @@ management:
       enabled: true
     liveness-state:
       enabled: true
+
 
 eureka:
   instance:
@@ -61,5 +63,4 @@ logging:
     org:
       gslearn:
         accounts: DEBUG
-
 

@@ -48,8 +48,6 @@ logging:
         loans: DEBUG
 
 
-
-
 eureka:
   instance:
     preferIpAddress: true
