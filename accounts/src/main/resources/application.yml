@@ -20,6 +20,10 @@ spring:
     hibernate:
       ddl-auto: update
     show-sql: true
+  cloud:
+    openfeign:
+      circuitbreaker:
+        enabled: true
 
 management:
   endpoints:
@@ -63,4 +67,12 @@ logging:
     org:
       gslearn:
         accounts: DEBUG
+
+resilience4j.circuitbreaker:
+  configs:
+    default:
+      sliding-window-size: 10 # How many request to monitor to move from closed to open
+      permitted-number-of-calls-in-half-open-state: 2
+      failure-rate-threshold: 50 # How much percentage failure to move from closed to open
+      wait-duration-in-open-state: 10000
 
