@@ -11,6 +11,9 @@ spring:
           # To tell gateway to connect with eureka server to do client discovery
           # Set to false if there is custom url instead of default ex: /eazybank/accounts ...
           lower-case-service-id: true
+      httpclient:
+        connect-timeout: 1000
+        response-timeout: 2s
 
 management:
   endpoints:
