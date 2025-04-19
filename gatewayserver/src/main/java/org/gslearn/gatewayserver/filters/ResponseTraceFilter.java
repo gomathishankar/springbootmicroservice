@@ -12,20 +12,22 @@ import reactor.core.publisher.Mono;
 @Configuration
 public class ResponseTraceFilter {
 
-  private static final Logger logger = LoggerFactory.getLogger(ResponseTraceFilter.class);
+    private static final Logger logger = LoggerFactory.getLogger(ResponseTraceFilter.class);
 
-  @Autowired
-  FilterUtility filterUtility;
+    @Autowired
+    FilterUtility filterUtility;
 
-  @Bean
-  public GlobalFilter postGlobalFilter() {
-    return (exchange, chain) -> chain.filter(exchange).then(Mono.fromRunnable(() -> {
-      HttpHeaders headers = exchange.getRequest().getHeaders();
-      String correlationId = filterUtility.getCorrelationId(headers);
-      logger.debug(String.format("Updated the correlation id to the outbound headers", correlationId));
-      exchange.getResponse().getHeaders().add(FilterUtility.CORRELATION_ID, correlationId);
-    }));
-  }
+    @Bean
+    public GlobalFilter postGlobalFilter() {
+        return (exchange, chain) -> chain.filter(exchange).then(Mono.fromRunnable(() -> {
+            HttpHeaders headers = exchange.getRequest().getHeaders();
+            String correlationId = filterUtility.getCorrelationId(headers);
+            if (!(exchange.getResponse().getHeaders().containsKey(FilterUtility.CORRELATION_ID))) {
+                logger.debug(String.format("Updated the correlation id to the outbound headers", correlationId));
+                exchange.getResponse().getHeaders().add(FilterUtility.CORRELATION_ID, correlationId);
+            }
+        }));
+    }
 
 }
 

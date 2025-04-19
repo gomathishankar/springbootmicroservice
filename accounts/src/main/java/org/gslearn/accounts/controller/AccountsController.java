@@ -171,7 +171,7 @@ public class AccountsController {
             )
     }
     )
-    @Retry(name="getBUildInfo",fallbackMethod = "getBuildInfoFallback")
+    @Retry(name="getBuildInfo",fallbackMethod = "getBuildInfoFallback")
     @GetMapping("/build-info")
     public ResponseEntity<String> getBuildVersion() {
         logger.debug("getBuildVersion() method invoked" );
