@@ -1,5 +1,7 @@
 package org.gslearn.accounts.controller;
 
+import io.github.resilience4j.ratelimiter.annotation.RateLimiter;
+import io.github.resilience4j.retry.annotation.Retry;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -14,6 +16,8 @@ import org.gslearn.accounts.dto.CustomerDto;
 import org.gslearn.accounts.dto.ErrorResponseDto;
 import org.gslearn.accounts.dto.ResponseDto;
 import org.gslearn.accounts.service.IAccountsService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.env.Environment;
@@ -30,6 +34,7 @@ import org.springframework.web.bind.annotation.*;
         description = "CRUD REst APIS in Eazy bank for account details")
 public class AccountsController {
 
+    private static final Logger logger = LoggerFactory.getLogger(AccountsController.class);
     private final IAccountsService accountsService;
 
     public AccountsController(IAccountsService accountsService) {
@@ -167,9 +172,16 @@ public class AccountsController {
             )
     }
     )
+    @Retry(name="getBuildInfo",fallbackMethod = "getBuildInfoFallback")
     @GetMapping("/build-info")
     public ResponseEntity<String> getBuildVersion() {
+        logger.debug("getBuildVersion() method invoked" );
         return ResponseEntity.status(HttpStatus.OK).body(buildVersion);
+    }
+
+    public ResponseEntity<String> getBuildInfoFallback(Throwable throwable) {
+        logger.debug("getBuildInfoFallback() method invoked" );
+        return ResponseEntity.status(HttpStatus.OK).body("0.9");
     }
 
     @Operation(
@@ -190,9 +202,15 @@ public class AccountsController {
             )
     }
     )
+    @RateLimiter(name="getJavaVersion",fallbackMethod = "getJavaVersionFallback")
     @GetMapping("/java-version")
     public ResponseEntity<String> getJavaVersion() {
         return ResponseEntity.status(HttpStatus.OK).body(env.getProperty("JAVA_HOME"));
+    }
+
+    public ResponseEntity<String> getJavaVersionFallback(Throwable throwable) {
+        logger.debug("getJavaVersionFallback() method invoked" );
+        return ResponseEntity.status(HttpStatus.OK).body("17");
     }
 
     @Operation(
