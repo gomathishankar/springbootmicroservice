@@ -138,7 +138,7 @@
                 <version>3.4.2</version>
                 <configuration>
                     <to>
-                        <image>lsgshankar/${project.artifactId}:s9</image>
+                        <image>lsgshankar/${project.artifactId}:s11</image>
                     </to>
                 </configuration>
             </plugin>

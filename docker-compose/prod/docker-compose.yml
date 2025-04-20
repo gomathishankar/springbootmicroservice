@@ -12,7 +12,7 @@ services:
       service: network-deploy-service
 
   configserver:
-    image: "lsgshankar/configserver:s9"
+    image: "lsgshankar/configserver:s11"
     container_name: configserver-ms
     ports:
       - "8071:8071"
@@ -27,7 +27,7 @@ services:
       service: microservice-base-config
 
   eurekaserver:
-    image: "lsgshankar/eurekaserver:s9"
+    image: "lsgshankar/eurekaserver:s11"
     container_name: eurekaserver-ms
     ports:
       - "8070:8070"
@@ -47,7 +47,7 @@ services:
       SPRING_APPLICATION_NAME: "eurekaserver"
 
   accounts:
-    image: "lsgshankar/accounts:s9"
+    image: "lsgshankar/accounts:s11"
     container_name: accounts-ms
     ports:
       - "8080:8080"
@@ -69,7 +69,7 @@ services:
         condition: service_healthy
 
   cards:
-    image: "lsgshankar/cards:s9"
+    image: "lsgshankar/cards:s11"
     container_name: cards-ms
     ports:
       - "9000:9000"
@@ -91,7 +91,7 @@ services:
         condition: service_healthy
 
   loans:
-    image: "lsgshankar/loans:s9"
+    image: "lsgshankar/loans:s11"
     container_name: loans-ms
     ports:
       - "8090:8090"
@@ -113,7 +113,7 @@ services:
         condition: service_healthy
 
   gatewayserver:
-    image: "lsgshankar/gatewayservice:s9"
+    image: "lsgshankar/gatewayservice:s11"
     container_name: gatewayserver-ms
     ports:
       - "8072:8072"
