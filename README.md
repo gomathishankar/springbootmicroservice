@@ -9,14 +9,14 @@ Also has set up for the service discovery.
 - [Usage](#Usage)
 
 ## Project Structure
-eazy-bank/
-├── accounts
-├── loans
-├── cards
-├── configserver
-├── docker-compose
-├── eureka server
-└── gatewayserver
+springbootmicroservice/       
+├── accounts          
+├── loans             
+├── cards            
+├── configserver       
+├── docker-compose      
+├── eureka server          
+└── gatewayserver        
 
 ### Accounts Service:
 
@@ -39,6 +39,12 @@ All the configuration for the application is handled in configserver.
 ### Config server
 It is a separate repository that maintains the configuration for all the microservices,
 gateway and service discovery configurations. The intention is to maintain the config outside of the main repo.
+
+### eurekaserver
+Contains the service and configurations for maintaining the service discovery of all the microservices
+
+### gatewatserver:
+Uses the API gateway setup for all the services in the project
 
 ## Prerequisites
 - Java 21 or higher
