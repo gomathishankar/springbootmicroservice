@@ -4,11 +4,11 @@ It offers three services, Accounts, Loans and Cards and has API gateway configur
 Also has set up for the service discovery.
 
 ## Table of Contents
-- [Project Structure](#Project Structure)
+- [Project Structure](#ProjectStructure)
 - [Prerequisites](#prerequisites)
 - [Usage](#Usage)
 
-## Project Structure
+## ProjectStructure
 springbootmicroservice/       
 ├── accounts          
 ├── loans             
