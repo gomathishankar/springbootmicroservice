@@ -9,6 +9,7 @@ Also has set up for the service discovery.
 - [Usage](#Usage)
 
 ## Project Structure
+
 springbootmicroservice/       
 ├── accounts          
 ├── loans             
@@ -17,6 +18,7 @@ springbootmicroservice/
 ├── docker-compose      
 ├── eureka server          
 └── gatewayserver        
+
 
 ### Accounts Service:
 
