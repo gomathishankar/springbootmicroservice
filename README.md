@@ -9,7 +9,7 @@ Also has set up for the service discovery.
 - [Usage](#Usage)
 
 ## Project Structure
-eazy-bank/
+springbootmicroservice/
 ├── accounts
 ├── loans
 ├── cards
