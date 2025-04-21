@@ -8,7 +8,7 @@ Also has set up for the service discovery.
 - [Prerequisites](#prerequisites)
 - [Usage](#Usage)
 
-## ProjectStructure
+## Project Structure
 springbootmicroservice/       
 ├── accounts          
 ├── loans             
