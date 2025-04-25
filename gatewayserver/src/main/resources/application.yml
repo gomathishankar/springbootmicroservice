@@ -29,10 +29,12 @@ management:
   endpoint:
     gateway:
       access: unrestricted
-
   info:
     env:
       enabled: true
+  metrics:
+    tags:
+      application: ${spring.application.name}
 
 info:
   app:
@@ -45,7 +47,6 @@ logging:
     org:
       gslearn:
         gatewayserver: DEBUG
-
 
 
 resilience4j.circuitbreaker:
