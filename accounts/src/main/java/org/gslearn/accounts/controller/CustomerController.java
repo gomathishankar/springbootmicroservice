@@ -26,43 +26,44 @@ import org.springframework.web.bind.annotation.RestController;
 @Validated
 @RequestMapping(value = "/api", produces = {MediaType.APPLICATION_JSON_VALUE})
 @Tag(name = "Rest APIs for Customer details in Eazybank",
-    description = "Rest APIS to provide Eazy bank customer details")
+        description = "Rest APIS to provide Eazy bank customer details")
 public class CustomerController {
 
-  private final ICustomersService icustomersService;
+    private final ICustomersService icustomersService;
 
-  private static final Logger logger = LoggerFactory.getLogger(CustomerController.class);
+    private static final Logger logger = LoggerFactory.getLogger(CustomerController.class);
 
-  public CustomerController(ICustomersService icustomersService) {
-    this.icustomersService = icustomersService;
-  }
+    public CustomerController(ICustomersService icustomersService) {
+        this.icustomersService = icustomersService;
+    }
 
-  @Operation(
-      summary = "Fetch Customer Details REST API",
-      description = "REST API to fetch Customer details based on a mobile number"
-  )
-  @ApiResponses({
-      @ApiResponse(
-          responseCode = "200",
-          description = "HTTP Status OK"
-      ),
-      @ApiResponse(
-          responseCode = "500",
-          description = "HTTP Status Internal Server Error",
-          content = @Content(
-              schema = @Schema(implementation = ErrorResponseDto.class)
-          )
-      )
-  })
-  @GetMapping("/fetchCustomerDetails")
-  public ResponseEntity<CustomerDetailsDto> fetchCustomerDetails(
-      @RequestHeader("eazybank-correlation-id") String correlationId,
-      @RequestParam("mobileNumber")
-                                                                   @Pattern(regexp = "(^$|[0-9]{10})", message = "Mobile number must be 10 digit")
-                                                                   String mobileNumber){
-    logger.debug("eazyBank-correlation-id found : {}", correlationId);
-    CustomerDetailsDto customerDetailsDto = icustomersService.fetchCustomerDetails(mobileNumber,correlationId);
-    return ResponseEntity.status(HttpStatus.OK).body(customerDetailsDto);
+    @Operation(
+            summary = "Fetch Customer Details REST API",
+            description = "REST API to fetch Customer details based on a mobile number"
+    )
+    @ApiResponses({
+            @ApiResponse(
+                    responseCode = "200",
+                    description = "HTTP Status OK"
+            ),
+            @ApiResponse(
+                    responseCode = "500",
+                    description = "HTTP Status Internal Server Error",
+                    content = @Content(
+                            schema = @Schema(implementation = ErrorResponseDto.class)
+                    )
+            )
+    })
+    @GetMapping("/fetchCustomerDetails")
+    public ResponseEntity<CustomerDetailsDto> fetchCustomerDetails(
+            @RequestHeader("eazybank-correlation-id") String correlationId,
+            @RequestParam("mobileNumber")
+            @Pattern(regexp = "(^$|[0-9]{10})", message = "Mobile number must be 10 digit")
+            String mobileNumber) {
+        logger.debug("fetchCustomerDetails start");
+        CustomerDetailsDto customerDetailsDto = icustomersService.fetchCustomerDetails(mobileNumber, correlationId);
+        logger.debug("fetchCustomerDetails end");
+        return ResponseEntity.status(HttpStatus.OK).body(customerDetailsDto);
 
-  }
+    }
 }
