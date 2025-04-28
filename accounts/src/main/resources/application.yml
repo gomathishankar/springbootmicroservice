@@ -31,7 +31,6 @@ management:
       exposure:
         include: "*"
   endpoint:
-
     shutdown:
       access: unrestricted
     health:
@@ -45,6 +44,9 @@ management:
       enabled: true
     liveness-state:
       enabled: true
+  metrics:
+    tags:
+      application: ${spring.application.name}
 
 
 eureka:
@@ -67,6 +69,8 @@ logging:
     org:
       gslearn:
         accounts: DEBUG
+  pattern:
+    level: "%5p [${spring.application.name},%X{trace_id},%X{span_id}]"
 
 resilience4j.circuitbreaker:
   configs:

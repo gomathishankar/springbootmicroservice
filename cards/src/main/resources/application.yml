@@ -20,13 +20,16 @@ spring:
     hibernate:
       ddl-auto: update
     show-sql: true
+  cloud:
+    openfeign:
+      circuitbreaker:
+        enabled: true
 
 management:
   endpoints:
     web:
       exposure:
         include: "*"
-
   endpoint:
     shutdown:
       access: unrestricted
@@ -41,6 +44,9 @@ management:
       enabled: true
     liveness-state:
       enabled: true
+  metrics:
+    tags:
+      application: ${spring.application.name}
 
 eureka:
   instance:
@@ -62,4 +68,34 @@ logging:
     org:
       gslearn:
         cards: DEBUG
+  pattern:
+    level: "%5p [${spring.application.name},%X{trace_id},%X{span_id}]"
+
+resilience4j.circuitbreaker:
+  configs:
+    default:
+      sliding-window-size: 10 # How many request to monitor to move from closed to open
+      permitted-number-of-calls-in-half-open-state: 2
+      failure-rate-threshold: 50 # How much percentage failure to move from closed to open
+      wait-duration-in-open-state: 10000
+
+
+resilience4j:
+  retry:
+    configs:
+      default:
+        max-attempts: 3
+        wait-duration: 100
+        enable-exponential-backoff: true
+        exponential-backoff-multiplier: 2
+        ignore-exceptions:
+          - java.lang.NullPointerException
+        retry-exceptions:
+          - java.util.concurrent.TimeoutException
+  ratelimiter:
+    configs:
+      default:
+        timeout-duration: 1000
+        limit-for-period: 1
+        limit-refresh-period: 5000
 
