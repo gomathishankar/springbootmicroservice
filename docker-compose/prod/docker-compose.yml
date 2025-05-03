@@ -215,7 +215,7 @@ services:
       service: network-deploy-service
 
   configserver:
-    image: "lsgshankar/configserver:s11"
+    image: "lsgshankar/configserver:s12"
     container_name: configserver-ms
     ports:
       - "8071:8071"
@@ -232,7 +232,7 @@ services:
       OTEL_SERVICE_NAME: "configserver"
 
   eurekaserver:
-    image: "lsgshankar/eurekaserver:s11"
+    image: "lsgshankar/eurekaserver:s12"
     container_name: eurekaserver-ms
     ports:
       - "8070:8070"
@@ -253,7 +253,7 @@ services:
       OTEL_SERVICE_NAME: "eurekaserver"
 
   accounts:
-    image: "lsgshankar/accounts:s11"
+    image: "lsgshankar/accounts:s12"
     container_name: accounts-ms
     ports:
       - "8080:8080"
@@ -276,7 +276,7 @@ services:
         condition: service_healthy
 
   cards:
-    image: "lsgshankar/cards:s11"
+    image: "lsgshankar/cards:s12"
     container_name: cards-ms
     ports:
       - "9000:9000"
@@ -299,7 +299,7 @@ services:
         condition: service_healthy
 
   loans:
-    image: "lsgshankar/loans:s11"
+    image: "lsgshankar/loans:s12"
     container_name: loans-ms
     ports:
       - "8090:8090"
@@ -322,7 +322,7 @@ services:
         condition: service_healthy
 
   gatewayserver:
-    image: "lsgshankar/gatewayserver:s11"
+    image: "lsgshankar/gatewayserver:s12"
     container_name: gatewayserver-ms
     ports:
       - "8072:8072"
