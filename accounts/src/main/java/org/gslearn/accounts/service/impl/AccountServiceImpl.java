@@ -3,6 +3,7 @@ package org.gslearn.accounts.service.impl;
 import lombok.AllArgsConstructor;
 import org.gslearn.accounts.constants.AccountsConstants;
 import org.gslearn.accounts.dto.AccountsDto;
+import org.gslearn.accounts.dto.AccountsMessageDto;
 import org.gslearn.accounts.dto.CustomerDto;
 import org.gslearn.accounts.entity.Accounts;
 import org.gslearn.accounts.entity.Customer;
@@ -13,6 +14,9 @@ import org.gslearn.accounts.mapper.CustomerMapper;
 import org.gslearn.accounts.repository.AccountsRepository;
 import org.gslearn.accounts.repository.CustomerRepository;
 import org.gslearn.accounts.service.IAccountsService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.cloud.stream.function.StreamBridge;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -24,9 +28,11 @@ import java.util.Random;
 @AllArgsConstructor
 public class AccountServiceImpl implements IAccountsService {
 
+    private static final Logger LOG = LoggerFactory.getLogger(AccountServiceImpl.class);
 
     private AccountsRepository accountsRepository;
     private CustomerRepository customerRepository;
+    private final StreamBridge streamBridge;
 
     @Override
     public void createAccount(CustomerDto customerDto) {
@@ -36,8 +42,15 @@ public class AccountServiceImpl implements IAccountsService {
             throw new CustomerAlreadyExistsException("Customer already exists");
         }
         Customer savedCustomer = customerRepository.save(customer);
-        Accounts accounts = createNewAccount(savedCustomer);
-        accountsRepository.save(accounts);
+        Accounts savedAccount = accountsRepository.save(createNewAccount(savedCustomer));
+        sendCommunication(savedAccount,savedCustomer);
+    }
+
+    private void sendCommunication(Accounts accounts,Customer customer) {
+        var accountsMessageDto = new AccountsMessageDto(accounts.getAccountNumber(),customer.getName(),customer.getEmail(),customer.getMobileNumber());
+        LOG.info("Sending communication request for the details: {}",accountsMessageDto);
+        var result = streamBridge.send("accounts-out-0",accountsMessageDto);
+        LOG.info("Is the communication request process successfully ?: {}",result);
     }
 
     private Accounts createNewAccount(Customer customer) {
