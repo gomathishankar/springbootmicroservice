@@ -136,6 +136,7 @@
                             <artifactId>lombok</artifactId>
                             <version>${lombok.version}</version>
                         </path>
+
                     </annotationProcessorPaths>
                 </configuration>
             </plugin>
@@ -145,7 +146,7 @@
                 <version>3.4.2</version>
                 <configuration>
                     <to>
-                        <image>lsgshankar/${project.artifactId}:s12</image>
+                        <image>lsgshankar/${project.artifactId}:s14</image>
                     </to>
                 </configuration>
             </plugin>
