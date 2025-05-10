@@ -49,7 +49,7 @@ public class AccountServiceImpl implements IAccountsService {
     private void sendCommunication(Accounts accounts,Customer customer) {
         var accountsMessageDto = new AccountsMessageDto(accounts.getAccountNumber(),customer.getName(),customer.getEmail(),customer.getMobileNumber());
         LOG.info("Sending communication request for the details: {}",accountsMessageDto);
-        var result = streamBridge.send("accounts-out-0",accountsMessageDto);
+        var result = streamBridge.send("sendCommunication-out-0",accountsMessageDto);
         LOG.info("Is the communication request process successfully ?: {}",result);
     }
 
