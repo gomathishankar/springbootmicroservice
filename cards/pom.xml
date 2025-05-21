@@ -99,7 +99,7 @@
         </dependency>
         <dependency>
             <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+            <artifactId>spring-cloud-starter-kubernetes-discoveryclient</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework.cloud</groupId>
@@ -136,7 +136,6 @@
                             <artifactId>lombok</artifactId>
                             <version>${lombok.version}</version>
                         </path>
-
                     </annotationProcessorPaths>
                 </configuration>
             </plugin>
@@ -146,7 +145,7 @@
                 <version>3.4.2</version>
                 <configuration>
                     <to>
-                        <image>lsgshankar/${project.artifactId}:s14</image>
+                        <image>lsgshankar/${project.artifactId}:s17</image>
                     </to>
                 </configuration>
             </plugin>
